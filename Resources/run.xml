@@ -1,0 +1,10 @@
+﻿<xml>
+  <!-- TVsets settings -->
+  <manufacturer>Samsung</manufacturer>
+  <priceLowerLimit></priceLowerLimit>
+  <priceUpperLimit>1000</priceUpperLimit>
+  <YearLowerLimit>2013</YearLowerLimit>
+  <YearUpperLimit></YearUpperLimit>
+  <diagonalLowerLimit>39</diagonalLowerLimit>
+  <diagonalUpperLimit>42</diagonalUpperLimit>
+</xml>
