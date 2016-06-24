@@ -75,7 +75,6 @@ namespace demo.framework.Forms
         {
         }
 
-
         public void SearchInManufacturer()
         {
             if (_model != "")
@@ -119,20 +118,15 @@ namespace demo.framework.Forms
         public List<TVset> GetTvs()
         {
             List<TVset> tv = new List<TVset>();
-
             Labels TVinfo = new Labels(By.XPath(byProductName), "Product names");
-
             var results = TVinfo.GetLabels (byProductName, byProductDescription, locatorPrice, patternFirstWord, patternSecondWord, patternPrice);
 
             int count = results.GetLength(0);
-
             for (int i = 0; i < count; i++)
             {
                 tv.Add(new TVset(results[i, 0], results[i, 1], results[i, 2], results[i, 3], results[i, 4]));
             };
-
             return tv;
-
         }
     }
 }

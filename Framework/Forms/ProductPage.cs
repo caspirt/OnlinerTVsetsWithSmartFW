@@ -10,18 +10,14 @@ namespace demo.framework.Forms
 
         private static By byProductYear = By.XPath("//*[@id='specs']/div[2]/div/table/tbody[1]/tr[2]/td[2]/span");
 
-
         public ProductPage() : base(ProductPageLocator, "product Page")
         {
         }
 
-
         public string  GetYear ()
         {
             var Year = Browser.GetDriver().FindElements(byProductYear);
-
             int count = Year.Count;
-
             if (count > 0)
             {
                 return Year[0].Text;
@@ -30,7 +26,6 @@ namespace demo.framework.Forms
             {
                 return "0";
             }
-
         }
     }
 }
