@@ -22,11 +22,10 @@ namespace demo.tests
         {
             int step = 1;
 
-            Log.Step(step++, "Open onliner");
+            Log.Step(step++, "Open main onliner page");
             Onliner mainForm = new Onliner();
 
-
-            Log.Step(step++, "Go to catalog");
+            Log.Step(step++, "Go to catalog page");
             mainForm.NavigateToCatalog();
 
             Log.Step(step++, "Click TVsets link");
@@ -43,20 +42,29 @@ namespace demo.tests
             Log.Step(step++, "Set diagonal search");
             TVpage.SearchInSelectBoxesRange();
 
-            Log.Step(step++, "Get all model");
+            Log.Step(step++, "Get data for all models available at first page result");
             TVpage.SearchInSelectBoxesRange();
 
-            Log.Step(step++, "Create list of model description");
+            Log.Step(step++, "Create list of model's description");
             var tvs = TVpage.GetTvs();
 
-            Log.Step(step++, "Ппроверяем, что данные соответствует");
+            Log.Step(step++, "Check that all collected values are correct");
             foreach (var tv in tvs)
             {
-                Assert.AreEqual(_model, tv.manufacturer);
-                Assert.GreaterOrEqual(tv.diagonal,_diagonalLowerLimit);
-                Assert.LessOrEqual(tv.diagonal, _diagonalUpperLimit);
-                Assert.LessOrEqual(tv.price,_priceUpperLimit);
-                Assert.GreaterOrEqual(tv.year, _YearLowerLimit);
+                if ( _model !="")
+                    Assert.AreEqual(_model, tv.manufacturer,string.Concat("manufacturer ", _model, " is correct"));
+                if (_diagonalLowerLimit != "")
+                    Assert.GreaterOrEqual(tv.diagonal,_diagonalLowerLimit, string.Concat("diagonal", tv.diagonal, "inside range "));
+                if (_diagonalUpperLimit != "")
+                    Assert.LessOrEqual(tv.diagonal, _diagonalUpperLimit, string.Concat("diagonal", tv.diagonal, "inside range "));
+                if (_priceUpperLimit != "")
+                    Assert.LessOrEqual(tv.price,_priceUpperLimit, string.Concat("price", tv.price, "inside range "));
+                if (_priceLowerLimit != "")
+                    Assert.GreaterOrEqual(tv.price, _priceLowerLimit, string.Concat("price", tv.price, "inside range "));
+                if (_YearLowerLimit != "")
+                    Assert.GreaterOrEqual(tv.year, _YearLowerLimit, string.Concat("Year ", tv.year, "inside range "));
+                if (_YearUpperLimit != "")
+                    Assert.LessOrEqual(tv.year, _YearLowerLimit, string.Concat("Year ", tv.year, "inside range "));
             }
         }
     }
